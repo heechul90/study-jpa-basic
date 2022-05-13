@@ -24,4 +24,8 @@ public class Member {
     public Member(String username) {
         this.username = username;
     }
+
+    public void changeUsername(String username) {
+        this.username = username;
+    }
 }
