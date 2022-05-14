@@ -7,12 +7,21 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 import study.jpabasic.domain.Member;
+import study.jpabasic.domain.Team;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @Transactional
 class MemberRepositoryTest {
+
+    @PersistenceContext
+    EntityManager em;
 
     @Autowired
     MemberRepository memberRepository;
@@ -29,5 +38,31 @@ class MemberRepositoryTest {
 
         //then
         Assertions.assertThat(findMember.getUsername()).isEqualTo("memberA");
+    }
+
+    @Test
+    @Rollback(value = false)
+    void jpaTest() {
+        Team team = new Team("team1");
+        em.persist(team);
+
+        Member member = new Member("memberA");
+        member.changeTeam(team);
+
+        em.persist(member);
+
+        //em.flush();
+        //em.clear();
+
+        Team findTeam = em.find(Team.class, team.getId());
+        List<Member> members = findTeam.getMembers();
+
+        System.out.println("====================");
+        for (Member m : members) {
+            System.out.println("m.getUsername() = " + m.getUsername());
+        }
+        System.out.println("====================");
+
+
     }
 }
