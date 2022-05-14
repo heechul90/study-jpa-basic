@@ -10,11 +10,16 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "HC_MEMBER")
+@SequenceGenerator(
+        name = "MEMBER_SEQ_GENERATOR",
+        sequenceName = "MEMBER_SEQ",
+        initialValue = 1, allocationSize = 100
+)
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Member {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MEMBER_SEQ_GENERATOR")
     @Column(name = "member_id")
     private Long id;
 

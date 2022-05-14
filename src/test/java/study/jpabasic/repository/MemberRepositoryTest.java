@@ -18,7 +18,7 @@ class MemberRepositoryTest {
     MemberRepository memberRepository;
 
     @Test
-    @Rollback(value = true)
+    @Rollback(value = false)
     void memberTest() {
         //given
         Member member = new Member("memberA");
