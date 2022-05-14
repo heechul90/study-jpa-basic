@@ -17,6 +17,7 @@ public class Member {
     @Column(name = "member_id")
     private Long id;
 
+    @Column(length = 60)
     private String username;
 
     public Member(String username) {
