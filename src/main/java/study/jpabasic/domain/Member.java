@@ -37,19 +37,15 @@ public class Member {
 
     private LocalDateTime lastModifiedDate;
 
+    @Lob
+    private String description;
+
     @ManyToOne
     @JoinColumn(name = "team_id")
     private Team team;
-
-    @Lob
-    private String description;
 
     public Member(String username) {
         this.username = username;
     }
 
-    public void changeTeam(Team team) {
-        this.team = team;
-        team.getMembers().add(this);
-    }
 }
