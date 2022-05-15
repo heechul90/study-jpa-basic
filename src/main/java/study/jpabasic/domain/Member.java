@@ -44,6 +44,10 @@ public class Member {
     @JoinColumn(name = "team_id")
     private Team team;
 
+    @OneToOne
+    @JoinColumn(name = "locker_id")
+    private Locker locker;
+
     public Member(String username) {
         this.username = username;
     }
