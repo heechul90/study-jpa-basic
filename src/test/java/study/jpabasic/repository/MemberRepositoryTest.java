@@ -50,6 +50,9 @@ class MemberRepositoryTest {
 
         em.persist(member);
 
+        Member findMember = em.find(Member.class, member.getId());
+
+
         //em.flush();
         //em.clear();
     }
