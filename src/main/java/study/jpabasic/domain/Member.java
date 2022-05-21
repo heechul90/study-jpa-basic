@@ -36,6 +36,20 @@ public class Member extends BaseEntity {
     @Lob
     private String description;
 
+    @Embedded
+    private Period workPeriod;
+
+    @Embedded
+    private Address homeAddress;
+
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "city", column = @Column(name = "work_city")),
+            @AttributeOverride(name = "street", column = @Column(name = "work_street")),
+            @AttributeOverride(name = "zipcode", column = @Column(name = "work_zipcode"))
+    })
+    private Address workAddress;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "team_id")
     private Team team;
@@ -66,6 +80,16 @@ public class Member extends BaseEntity {
         this.roleType = roleType;
         this.description = description;
         this.team = team;
+    }
+
+    public Member(String loginId, String username, Integer age, RoleType roleType, String description, Period workPeriod, Address homeAddress) {
+        this.loginId = loginId;
+        this.username = username;
+        this.age = age;
+        this.roleType = roleType;
+        this.description = description;
+        this.workPeriod = workPeriod;
+        this.homeAddress = homeAddress;
     }
 
     @Override

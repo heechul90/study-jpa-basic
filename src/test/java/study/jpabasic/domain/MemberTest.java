@@ -46,5 +46,24 @@ class MemberTest {
         assertThat(findMember.getTeam().getName()).isEqualTo("teamA");
     }
 
+    @Test
+    @Rollback(value = false)
+    public void createMemberWithEmbeddedTest() throws Exception{
+        //given
+
+        Period period = new Period(LocalDateTime.now(), LocalDateTime.now());
+        Address address = new Address("sejong", "hanuridaero", "12345");
+        Member member = new Member("heechul4296", "Lee", 33, RoleType.USER, "내용", period, address);
+
+        //when
+        em.persist(member);
+        em.flush();
+        em.clear();
+
+        //then
+        Member findMember = em.find(Member.class, member.getId());
+        assertThat(findMember.getHomeAddress().getCity()).isEqualTo("sejong");
+    }
+
 
 }
