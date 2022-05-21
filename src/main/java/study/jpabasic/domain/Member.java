@@ -61,6 +61,7 @@ public class Member extends BaseEntity {
     @OneToMany(mappedBy = "member")
     private List<MemberProduct> memberProducts = new ArrayList<>();
 
+    //=== 생성자 메서드 ===//
     public Member(String username) {
         this.username = username;
     }
@@ -92,15 +93,13 @@ public class Member extends BaseEntity {
         this.homeAddress = homeAddress;
     }
 
-    @Override
-    public String toString() {
-        return "Member{" +
-                "id=" + id +
-                ", loginId='" + loginId + '\'' +
-                ", username='" + username + '\'' +
-                ", age=" + age +
-                ", roleType=" + roleType +
-                ", description='" + description + '\'' +
-                '}';
+    //=== 변경 메서드 ===//
+    public void changeHomeAddress(Address newHomeAddress) {
+        this.homeAddress = newHomeAddress;
     }
+
+    public void changeWorkAddress(Address newWorkAddress) {
+        this.workAddress = newWorkAddress;
+    }
+
 }

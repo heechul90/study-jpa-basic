@@ -23,7 +23,7 @@ class MemberTest {
     EntityManager em;
 
     @Test
-    @Rollback(value = false)
+    //@Rollback(value = false)
     public void creatMemberTest() throws Exception{
         //given
         Team team = new Team("teamA");
@@ -47,7 +47,7 @@ class MemberTest {
     }
 
     @Test
-    @Rollback(value = false)
+    //@Rollback(value = false)
     public void createMemberWithEmbeddedTest() throws Exception{
         //given
 
@@ -63,6 +63,35 @@ class MemberTest {
         //then
         Member findMember = em.find(Member.class, member.getId());
         assertThat(findMember.getHomeAddress().getCity()).isEqualTo("sejong");
+    }
+
+    /**
+     * 값 타입과 불변 객체
+     * @throws Exception
+     */
+    @Test
+    //@Rollback(value = false)
+    public void createMemberWithEmbedded2Test() throws Exception{
+        //given
+        Address address = new Address("Sejong", "hanuridaero", "12345");
+        Member member1 = new Member("heechul4296", "Lee1", 33, RoleType.USER, "내용", new Period(), address);
+        em.persist(member1);
+
+        Member member2 = new Member("heechul4296", "Lee1", 33, RoleType.USER, "내용", new Period(), address);
+        em.persist(member2);
+
+        //em.flush();
+        //em.clear();
+
+        //when
+        member1.changeHomeAddress(new Address("Daejeon", address.getStreet(), address.getZipcode()));
+
+        //then
+        Member findMember1 = em.find(Member.class, member1.getId());
+        Member findMember2 = em.find(Member.class, member2.getId());
+
+        assertThat(findMember1.getHomeAddress().getCity()).isEqualTo("Daejeon");
+        assertThat(findMember2.getHomeAddress().getCity()).isEqualTo("Sejong");
     }
 
 
