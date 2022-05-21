@@ -18,7 +18,7 @@ import java.util.List;
 )
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Member {
+public class Member extends BaseEntity {
 
     @Id @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MEMBER_SEQ_GENERATOR")
     @Column(name = "member_id")
@@ -34,10 +34,6 @@ public class Member {
 
     @Enumerated(EnumType.STRING)
     private RoleType roleType;
-
-    private LocalDateTime createDate;
-
-    private LocalDateTime lastModifiedDate;
 
     @Lob
     private String description;
@@ -57,4 +53,23 @@ public class Member {
         this.username = username;
     }
 
+    public Member(String loginId, String username, Integer age, RoleType roleType, String description) {
+        this.loginId = loginId;
+        this.username = username;
+        this.age = age;
+        this.roleType = roleType;
+        this.description = description;
+    }
+
+    @Override
+    public String toString() {
+        return "Member{" +
+                "id=" + id +
+                ", loginId='" + loginId + '\'' +
+                ", username='" + username + '\'' +
+                ", age=" + age +
+                ", roleType=" + roleType +
+                ", description='" + description + '\'' +
+                '}';
+    }
 }
