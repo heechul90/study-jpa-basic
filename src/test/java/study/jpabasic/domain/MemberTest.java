@@ -94,5 +94,20 @@ class MemberTest {
         assertThat(findMember2.getHomeAddress().getCity()).isEqualTo("Sejong");
     }
 
+    /**
+     * 값 타입의 비교
+     * @throws Exception
+     */
+    @Test
+    public void equalTest() throws Exception{
+        //given
+        Address address1 = new Address("Sejong", "Hanuridaero", "123345");
+        Address address2 = new Address("Sejong", "Hanuridaero", "123345");
+
+        //then
+        assertThat(address1 == address2).isFalse();
+        assertThat(address1.equals(address2)).isTrue();
+    }
+
 
 }
