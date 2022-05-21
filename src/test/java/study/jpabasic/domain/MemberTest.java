@@ -108,6 +108,35 @@ class MemberTest {
         assertThat(address1 == address2).isFalse();
         assertThat(address1.equals(address2)).isTrue();
     }
+    
+    @Test
+    @Rollback(value = false)
+    public void CollectionTest() throws Exception{
+        //given
+        Member member = new Member("heechul", 33, new Address("Seoul", "gangnam", "11111"));
 
+        member.getAddressHistory().add(new AddressEntity("old1", "hanuridaero", "11111"));
+        member.getAddressHistory().add(new AddressEntity("old2", "hanuridaero", "11111"));
+
+        member.getFavoriteFoods().add("치킨");
+        member.getFavoriteFoods().add("족발");
+        member.getFavoriteFoods().add("피자");
+
+        //when
+        em.persist(member);
+        em.flush();
+        em.clear();
+    
+        //then
+        Member findMember = em.find(Member.class, member.getId());
+        assertThat(findMember.getFavoriteFoods()).contains("치킨", "족발", "피자");
+
+        //when
+        //치킨 -> 한식
+        findMember.getFavoriteFoods().remove("치킨");
+        findMember.getFavoriteFoods().add("한식");
+        assertThat(findMember.getFavoriteFoods()).contains("한식", "족발", "피자");
+
+    }
 
 }
