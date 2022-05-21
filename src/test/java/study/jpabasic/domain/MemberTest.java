@@ -26,16 +26,24 @@ class MemberTest {
     @Rollback(value = false)
     public void creatMemberTest() throws Exception{
         //given
-        Member member = new Member("loginId", "username", 33, RoleType.USER, "description");
+        Team team = new Team("teamA");
+        em.persist(team);
+
+        Member member = new Member("loginId", "username", 33, RoleType.USER, "description", team);
         member.CreateInfo("username", LocalDateTime.now());
 
         //when
         em.persist(member);
+        em.flush();
+        em.clear();
 
         //then
         Member findMember = em.find(Member.class, member.getId());
         System.out.println("findMember = " + findMember);
         assertThat(findMember.getUsername()).isEqualTo("username");
+
+        System.out.println("findMember.getTeam().getName() = " + findMember.getTeam().getName());
+        assertThat(findMember.getTeam().getName()).isEqualTo("teamA");
     }
 
 

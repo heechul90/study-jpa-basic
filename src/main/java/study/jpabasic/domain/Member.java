@@ -3,10 +3,8 @@ package study.jpabasic.domain;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,11 +36,11 @@ public class Member extends BaseEntity {
     @Lob
     private String description;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "team_id")
     private Team team;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "locker_id")
     private Locker locker;
 
@@ -59,6 +57,15 @@ public class Member extends BaseEntity {
         this.age = age;
         this.roleType = roleType;
         this.description = description;
+    }
+
+    public Member(String loginId, String username, Integer age, RoleType roleType, String description, Team team) {
+        this.loginId = loginId;
+        this.username = username;
+        this.age = age;
+        this.roleType = roleType;
+        this.description = description;
+        this.team = team;
     }
 
     @Override
