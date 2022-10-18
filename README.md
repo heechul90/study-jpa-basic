@@ -28,18 +28,18 @@
     - 데이터베이스 스키마 자동 생성
     - 필드와 컬럼 매핑
     - 기본 키 매핑
-    - [실전 예제1 - 요구사항 분석과 기본 매핑](https://github.com/heechul90/study-jpa-basic.git)
+    - [실전 예제1 - 요구사항 분석과 기본 매핑](https://github.com/heechul90/study-jpa-start)
 5. 연관관계 매핑 기초
     - 단방향 연관관계
     - 양방향 연관관계와 연관관계의 주인 1 - 기본
     - 양방향 연관관계와 연관관계의 주인 2 - 주의점, 정리
-    - [실전 예제 2 - 연관관계 매핑 시작](https://github.com/heechul90/study-jpa-basic.git)
+    - [실전 예제 2 - 연관관계 매핑 시작](https://github.com/heechul90/study-jpa-start)
 6. 다양한 연관관계 매핑
     - 다대일 [N:1]
     - 일대다 [1:N]
     - 일대일 [1:1]
     - 다대다 [N:M]
-    - [실전 예제 3 - 다양한 연관관계 매핑](https://github.com/heechul90/study-jpa-basic.git)
+    - [실전 예제 3 - 다양한 연관관계 매핑](https://github.com/heechul90/study-jpa-start)
 7. 고급 매핑
     - 상속관계 매핑
     - Mapped Superclass - 매핑 정보 상속
@@ -48,13 +48,13 @@
     - 프록시
     - 즉시 로딩과 지연 로딩
     - 영속성 전이(CASCADE)와 고아 객체
-    - [실전 예제 5 - 연관관계 관리](https://github.com/heechul90/study-jpa-basic.git)
+    - [실전 예제 5 - 연관관계 관리](https://github.com/heechul90/study-jpa-start)
 9. 값 타입
     - 기본값 타입
     - 임베디드 타입
     - 갑 타입과 불변 객체
     - 갑 타입의 비교
     - 갑 타입 컬렉션
-    - [실전 예제 6 - 갑 타입 매핑](https://github.com/heechul90/study-jpa-basic.git)
+    - [실전 예제 6 - 갑 타입 매핑](https://github.com/heechul90/study-jpa-start)
 
 [[다음으로]](https://github.com/heechul90/study-jpa-jpql.git)
