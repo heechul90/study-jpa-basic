@@ -57,4 +57,4 @@
     - 갑 타입 컬렉션
     - [실전 예제 6 - 갑 타입 매핑](https://github.com/heechul90/study-jpa-basic.git)
 
-[다음으로](https://github.com/heechul90/study-jpa-jpql.git)
+[[다음으로]](https://github.com/heechul90/study-jpa-jpql.git)
