@@ -58,3 +58,5 @@
     - [실전 예제 6 - 갑 타입 매핑](https://github.com/heechul90/study-jpa-start)
 
 [[다음으로]](https://github.com/heechul90/study-jpa-jpql.git)
+
+[[복습하기/적용하기]](https://github.com/heechul90/project-hellcoding)
